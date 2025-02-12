@@ -1,6 +1,5 @@
-#include <signal.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../include/minitalk.h"
+#include "../libft/libft.h"
 
 void handle_signal(int signum)
 {
@@ -13,12 +12,10 @@ void handle_signal(int signum)
 int main(void)
 {
     printf("Server PID: %d\n", getpid()); // Print server PID
-
-    // Set up signal handlers
     signal(SIGUSR1, handle_signal);
     signal(SIGUSR2, handle_signal);
 
-    while (1) // Keep the server running
+    while (1)
         pause();
 
     return 0;
