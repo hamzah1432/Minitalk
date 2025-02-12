@@ -4,5 +4,6 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
+#define _XOPEN_SOURCE 700
 
 #endif
