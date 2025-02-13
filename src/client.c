@@ -6,50 +6,77 @@
 /*   By: halmuhis <halmuhis@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 23:34:24 by halmuhis          #+#    #+#             */
-/*   Updated: 2025/02/12 17:31:47 by halmuhis         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:23:53 by halmuhis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 #include "../libft/libft.h"
 
-// char x = 5;
+static  char received = 0;
 
-void handle_signal(int signum)
+void handle_ack(int sig)
 {
-    if (signum == SIGUSR1) // If SIGUSR1 is received, print 0
-        write(1, "0", 1);
-    else if (signum == SIGUSR2) // If SIGUSR2 is received, print 1
-        write(1, "1", 1);
+    (void)sig;
+    received = 1;
+    printf("\n 1 bit\n");
+}
+
+void send_char(pid_t server_pid, char c)
+{
+    int bit;
+    
+    for (bit = 7; bit >= 0; bit--)
+    {
+        received = 0;
+        if ((c >> bit) & 1)
+            kill(server_pid, SIGUSR2);
+        else
+            kill(server_pid, SIGUSR1);
+        
+        while (!received)
+            pause();
+    }
+}
+
+void send_string(pid_t server_pid, char *str)
+{
+    while (*str)
+    {
+        send_char(server_pid, *str);
+        str++;
+    }
+    send_char(server_pid, '\0');
 }
 
 int main(int argc, char **argv)
 {
-    int i = -1;
-    int j = 8;
-    unsigned char bit = 0;
+    struct sigaction sa;
+    pid_t server_pid;
+
     if (argc != 3)
     {
-        write(1, "Error: arguments\n", 17);
+        ft_putstr_fd("Usage: ./client [server_pid] [message]\n", 2);
         return (1);
     }
-    int server_pid = ft_atoi(argv[1]);
-    signal(SIGUSR1, handle_signal);
-    signal(SIGUSR2, handle_signal);
 
-    while (argv[2][++i])
+    sa.sa_handler = handle_ack;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    
+    if (sigaction(SIGUSR1, &sa, NULL) == -1)
     {
-        j = 8;
-        while (--j >= 0)
-        {
-            bit = (unsigned char)argv[2][i];
-            sleep(1);
-            if ((bit >> j & 1) == 0)
-                kill(server_pid, SIGUSR1);
-            else if ((bit >> j & 1) == 1)
-                kill(server_pid, SIGUSR2);
-        }
+        ft_putstr_fd("Failed to set up signal handler\n", 2);
+        return (1);
     }
 
+    server_pid = ft_atoi(argv[1]);
+    if (server_pid <= 0)
+    {
+        ft_putstr_fd("Invalid server PID\n", 2);
+        return (1);
+    }
+
+    send_string(server_pid, argv[2]);
     return (0);
 }

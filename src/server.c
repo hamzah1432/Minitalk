@@ -6,11 +6,10 @@
 /*   By: halmuhis <halmuhis@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:51:39 by halmuhis          #+#    #+#             */
-/*   Updated: 2025/02/12 17:23:55 by halmuhis         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:44:59 by halmuhis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _XOPEN_SOURCE 700
 #include "../include/minitalk.h"
 #include "../libft/libft.h"
 
