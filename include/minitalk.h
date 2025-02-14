@@ -1,9 +1,30 @@
-#ifndef _MINITALK_H
-#define _MINITALK_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: halmuhis <halmuhis@student.42.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 14:30:00 by halmuhis          #+#    #+#           */
+/*   Updated: 2023/12/06 14:30:00 by halmuhis         ###   ########.fr     */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define _XOPEN_SOURCE 700
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
+#ifndef MINITALK_H
+# define MINITALK_H
+
+# define _DEFAULT_SOURCE
+
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "../libft/libft.h"
+
+typedef struct s_message
+{
+	unsigned char	c;
+	int				bits;
+}	t_message;
 
 #endif
