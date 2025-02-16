@@ -31,7 +31,7 @@ The project challenges students to implement efficient inter-process communicati
 ## Requirements
 
 - Unix-like operating system (Linux/MacOS)
-- GCC compiler
+- CC compiler
 - Make
 
 ## Installation
