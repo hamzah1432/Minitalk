@@ -6,7 +6,7 @@
 /*   By: halmuhis <halmuhis@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 18:14:56 by halmuhis          #+#    #+#             */
-/*   Updated: 2025/02/16 18:14:58 by halmuhis         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:38:09 by halmuhis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_append(char **str, unsigned char ch)
 	if (!str || !*str)
 		size = 0;
 	else
-		size = strlen(*str);
+		size = ft_strlen(*str);
 	temp = malloc(size + 2);
 	if (!temp)
 		return ;
@@ -36,22 +36,3 @@ void	ft_append(char **str, unsigned char ch)
 	free(*str);
 	*str = temp;
 }
-// int main()
-// {
-//     char* str = malloc(2);
-//     if (!str)
-//     {
-//         // Handle memory allocation failure
-//         return 1;
-//     }
-
-//     str[0] = 'h';
-//     str[1] = '\0';
-//     apend(&str, 'a');
-//     apend(&str, 'm');
-
-//     printf("%s\n", str);
-//     free(str);
-
-//     return 0;
-// }

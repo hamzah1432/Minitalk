@@ -25,6 +25,7 @@ typedef struct s_message
 {
 	unsigned char	c;
 	int				bits;
+	char			*str;
 }	t_message;
 
 #endif
