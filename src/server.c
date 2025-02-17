@@ -6,7 +6,7 @@
 /*   By: halmuhis <halmuhis@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:51:39 by halmuhis          #+#    #+#             */
-/*   Updated: 2025/02/16 20:59:01 by halmuhis         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:05:09 by halmuhis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	setup_signals(void)
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
-		printf("Error: Failed to setup signal handlers\n");
+		ft_putstr_fd("Error: Failed to setup signal handlers\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }
