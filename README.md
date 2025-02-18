@@ -56,6 +56,27 @@ make
 ./client [server_pid] [message]
 ```
 
+## Coding Standards
+
+This project follows the strict coding standards of 42 School known as "The Norm":
+
+- All functions must be a maximum of 25 lines
+- No more than 5 functions per file
+- One single declaration per line
+- One single instruction per line
+- No global variables
+- No assignments and declarations in the same line
+- Each function must be separated by a newline
+- Variable declarations must be at the start of function
+- Indentation must be done with tabs (4 spaces)
+- Each line must stay under 80 columns
+- Only while loops are allowed
+- No for, do while, switch, case, goto statements
+- No ternary operators
+- No direct assignments of variables in conditions
+
+The code is regularly checked with Norminette to ensure compliance with these standards.
+
 ## Implementation Details
 
 - Server acknowledges every message received by sending back a signal to the client
